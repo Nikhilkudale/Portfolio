@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://nikhilkudale-portfolio.vercel.app/sitemap.xml',
+    sitemap: 'https://portfolio-two-peach-41.vercel.app/sitemap.xml',
   };
 }
