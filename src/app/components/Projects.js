@@ -9,19 +9,19 @@ export default function Projects() {
       title: 'Cartly',
       tag: 'Full Stack',
       icon: '🛒',
-      description: 'A modular, full-stack e-commerce solution featuring a Spring Boot backend and React frontend. It implements secure JWT user authentication via Spring Security, transactional order processing, database schema migrations, and a responsive store interface.',
-      tech: ['Java', 'Spring Boot', 'React', 'Spring Security', 'PostgreSQL', 'JPA / Hibernate'],
-      github: 'https://github.com/nikhil-kudale-dev/cartly',
-      live: '#',
+      description: 'A responsive e-commerce platform offering secure checkout, product listings, order processing, and dynamic inventory management. Formulated with a Java Spring Boot backend and React client.',
+      tech: ['Java', 'Spring Boot', 'React', 'Spring Security', 'Cloudflare Pages', 'PostgreSQL'],
+      github: '#', // placeholder or nikhil-kudale-dev/cartly
+      live: 'https://cartly-cgt.pages.dev/',
     },
     {
-      title: 'DevShowcase',
-      tag: 'Backend / REST API',
-      icon: '📂',
-      description: 'A cloud-based builder that helps developers compile their profiles, public GitHub repositories, and coding timelines into responsive portfolio sites. Features API integrations and customizable templates.',
-      tech: ['Node.js', 'Express', 'React', 'MongoDB', 'GitHub API', 'JWT'],
+      title: 'RAG Chatbot',
+      tag: 'Generative AI / LLM',
+      icon: '🤖',
+      description: 'A Retrieval-Augmented Generation (RAG) conversational chatbot utilizing LangChain workflows and FAISS vector indices to ingest documents and respond contextually. Hosted live via Streamlit.',
+      tech: ['Python', 'LangChain', 'FAISS Vector DB', 'Open-Source LLMs', 'Streamlit'],
       github: '#',
-      live: '#',
+      live: 'https://nikhilkudale-ragchatbot-srcapp-givdds.streamlit.app/',
     },
     {
       title: 'AlgoPath',
@@ -39,7 +39,7 @@ export default function Projects() {
       <div className="container">
         <h2 className="sectionTitle">My Projects</h2>
         <p className="sectionSubtitle">
-          A showcase of recent engineering projects, ranging from full-stack e-commerce platforms to algorithmic visualizers.
+          A showcase of recent engineering projects, including live deployments of e-commerce websites and AI chatbots.
         </p>
 
         <div className={styles.projectsGrid}>
@@ -73,7 +73,7 @@ export default function Projects() {
                     </svg>
                     Source Code
                   </a>
-                  <a href={project.live} className={styles.projectLink}>
+                  <a href={project.live} className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24">
                       <path d="M14 0l3.75 3.75-9.75 9.75 2.5 2.5 9.75-9.75 3.75 3.75v-10h-10zm-14 4v16h16v-8h-2v6h-12v-12h6v-2h-8z" />
                     </svg>

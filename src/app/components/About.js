@@ -4,7 +4,17 @@ import React from 'react';
 import styles from './About.module.css';
 
 export default function About() {
-  const skillsList = ['Java', 'Spring Boot', 'Spring Security', 'React.js', 'Next.js', 'PostgreSQL', 'REST APIs'];
+  const skillsList = [
+    'Java',
+    'Python',
+    'Spring Boot',
+    'LangChain',
+    'FAISS Vector DB',
+    'React & Next.js',
+    'Power Automate',
+    'PostgreSQL / SQL',
+    'Generative AI / LLMs',
+  ];
 
   return (
     <section id="about">
@@ -19,10 +29,10 @@ export default function About() {
           <div className={styles.bioSection}>
             <h3>Designing scalable solutions.</h3>
             <p className={styles.bioText}>
-              I am a software engineer with a strong foundation in backend development using Java and Spring Boot, paired with experience creating interactive user interfaces with React.js and Next.js. My focus is on writing clean, modular code, optimizing queries, and designing scalable system architectures.
+              I am a software engineer with a strong foundation in backend development using Java and Spring Boot, paired with hands-on experience building conversational AI tools (RAG pipelines with LangChain &amp; FAISS) and full-stack web applications.
             </p>
             <p className={styles.bioText}>
-              Whether configuring database queries, building secure RESTful APIs with Spring Security, or fine-tuning responsive web layouts, I enjoy solving complex architectural challenges.
+              Additionally, I work with workflow scripting and automation (using Python and Power Automate) to simplify development pipelines and enhance organizational process efficiencies.
             </p>
 
             {/* Metrics counter grid */}
@@ -50,7 +60,7 @@ export default function About() {
                   <div className={styles.avatar}>NK</div>
                 </div>
                 <h4 className={styles.cardTitle}>Nikhil Kudale</h4>
-                <span className={styles.cardSubtitle}>Full Stack Developer</span>
+                <span className={styles.cardSubtitle}>Full Stack &amp; AI Engineer</span>
                 <div className={styles.techStackRow}>
                   {skillsList.map((skill, index) => (
                     <span key={index} className={styles.techBadge}>
