@@ -1,0 +1,102 @@
+.terminalContainer {
+  background: rgba(8, 7, 26, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.terminalHeader {
+  background: rgba(13, 11, 35, 0.9);
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Red/Yellow/Green mock window dots */
+.windowDots {
+  display: flex;
+  gap: 6px;
+}
+
+.windowDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotRed { background-color: #ef4444; }
+.dotYellow { background-color: #f59e0b; }
+.dotGreen { background-color: #10b981; }
+
+.terminalTitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Console Logs Stream */
+.terminalBody {
+  padding: 1.5rem;
+  height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.welcomeText {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.commandRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.promptSymbol {
+  font-weight: 800;
+}
+
+.inputText {
+  color: var(--text-primary);
+}
+
+.outputText {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.errorText {
+  color: var(--accent-color);
+}
+
+/* Bottom Input Row */
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.terminalInput {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--text-primary);
+  caret-color: var(--primary-color);
+}

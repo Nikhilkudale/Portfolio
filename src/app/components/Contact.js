@@ -23,7 +23,7 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg('');
 
@@ -39,18 +39,53 @@ export default function Contact() {
       return;
     }
 
-    // Simulate API submission
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+
+    // Formspree Integration Endpoint
+    // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree endpoint token.
+    const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+
+    if (formspreeEndpoint.includes('YOUR_FORMSPREE_ID')) {
+      // Mock simulation fallback if token is not replaced
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      }, 1200);
+      return;
+    }
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 1500);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Could not deliver message to Formspree. Try again later.');
+      }
+    } catch (err) {
+      setErrorMsg(err.message || 'Network error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

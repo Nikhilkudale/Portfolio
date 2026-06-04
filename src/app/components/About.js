@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './About.module.css';
+import Terminal from './Terminal';
 
 export default function About() {
   const skillsList = [
@@ -72,6 +73,9 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        {/* Retro Developer Terminal Shell */}
+        <Terminal />
       </div>
     </section>
   );
