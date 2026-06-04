@@ -9,10 +9,10 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const phrases = [
-    'Full Stack Engineer',
-    'Spring Boot Architect',
+    'Full Stack & AI Engineer',
+    'Generative AI (RAG) Specialist',
+    'Spring Boot Developer',
     'React & Next.js Developer',
-    'Problem Solver',
   ];
 
   const typingSpeed = 100;
@@ -72,11 +72,11 @@ export default function Hero() {
           Hi, I'm <span className="primaryGradientText">Nikhil Kudale</span>
         </h1>
         <div className={styles.subtitle}>
-          I build scalable web apps as a{' '}
+          I build scalable AI &amp; Web apps as a{' '}
           <span className={styles.typewriterText}>{text}</span>
         </div>
         <p className={styles.description}>
-          I'm a Full-Stack developer specializing in building highly performant backends with Java Spring Boot and designing smooth, interactive user interfaces with React and Next.js.
+          I'm a Full-Stack developer specializing in building scalable web applications. I integrate Generative AI capabilities (LLMs, LangChain, FAISS RAG workflows) with robust Java Spring Boot backends and interactive React/Next.js frontends.
         </p>
 
         <div className={styles.ctaGroup}>
