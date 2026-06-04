@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './Skills.module.css';
-import TagCloud from './TagCloud';
 
 export default function Skills() {
   const [animateBars, setAnimateBars] = useState(false);
@@ -143,30 +142,6 @@ export default function Skills() {
               </div>
             </div>
           ))}
-
-          {/* 3D Rotating Tag Cloud Card */}
-          <div className={styles.tiltCardWrapper}>
-            <div
-              className={styles.skillCard}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                height: '100%',
-                minHeight: '400px',
-              }}
-            >
-              <div className={styles.cardHeader}>
-                <div className={`${styles.cardIcon} ${styles.cardIconCyan}`}>🌐</div>
-                <h3 className={styles.cardTitle}>Skill Sphere (3D)</h3>
-              </div>
-              <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '280px', overflow: 'hidden' }}>
-                <TagCloud />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -83,9 +83,6 @@ export default function Hero() {
           <button onClick={() => handleScrollTo('projects')} className="btn btnPrimary">
             View My Work
           </button>
-          <a href="/resume.pdf" download="Nikhil_Kudale_Resume.pdf" className="btn btnSecondary" style={{ textDecoration: 'none' }}>
-            Download Resume
-          </a>
           <button onClick={() => handleScrollTo('contact')} className="btn btnSecondary">
             Contact Me
           </button>
