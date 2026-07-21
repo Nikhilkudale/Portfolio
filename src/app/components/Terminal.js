@@ -3,6 +3,73 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Terminal.module.css';
 
+// Levenshtein distance for terminal auto-correction
+const levenshteinDistance = (a, b) => {
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+  const row = Array.from({ length: a.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= b.length; i++) {
+    let prev = i;
+    for (let j = 1; j <= a.length; j++) {
+      const val = b[i - 1] === a[j - 1] ? row[j - 1] : Math.min(row[j - 1] + 1, prev + 1, row[j] + 1);
+      row[j - 1] = prev;
+      prev = val;
+    }
+    row[a.length] = prev;
+  }
+  return row[a.length];
+};
+
+// Aliases dictionary mapping user shortcuts and common misspellings
+const commandAliases = {
+  about: ['about', 'abt', 'bio', 'nikhil', 'who', 'info', 'resume', 'cv', 'background'],
+  skills: ['skills', 'skil', 'skils', 'skill', 'stack', 'tech', 'toolkit', 'languages', 'frameworks', 'java', 'python', 'react'],
+  projects: ['projects', 'proj', 'project', 'projets', 'prjt', 'interview', 'ats', 'cartly', 'rag', 'apps', 'work', 'portfolio'],
+  experience: ['experience', 'exp', 'expe', 'expereicne', 'experiance', 'work', 'wipro', 'job', 'career', 'history', 'philips'],
+  contact: ['contact', 'cntct', 'contct', 'email', 'emial', 'mail', 'phone', 'hire', 'reach', 'linkedin', 'github'],
+  help: ['help', 'hlp', 'hlep', 'halp', 'commands', 'cmd', 'options', '?', '-h', '--help'],
+  clear: ['clear', 'cls', 'clr', 'clean'],
+};
+
+const resolveCommand = (userCmd) => {
+  const inputCmd = userCmd.toLowerCase().trim();
+
+  // Direct match or alias match
+  for (const [canonicalCmd, aliases] of Object.entries(commandAliases)) {
+    if (aliases.includes(inputCmd)) {
+      return { canonicalCmd, corrected: false };
+    }
+  }
+
+  // Fuzzy match against canonical commands & aliases
+  let bestMatch = null;
+  let minDistance = Infinity;
+
+  for (const [canonicalCmd, aliases] of Object.entries(commandAliases)) {
+    for (const alias of aliases) {
+      if (alias.length >= 3 && inputCmd.length >= 3) {
+        const dist = levenshteinDistance(inputCmd, alias);
+        if (dist < minDistance) {
+          minDistance = dist;
+          bestMatch = canonicalCmd;
+        }
+      }
+    }
+  }
+
+  // Auto-correct if distance <= 2
+  if (bestMatch && minDistance <= 2) {
+    return { canonicalCmd: bestMatch, corrected: true, autoCorrectedFrom: inputCmd };
+  }
+
+  // Suggestion if distance is 3
+  if (bestMatch && minDistance === 3) {
+    return { canonicalCmd: null, suggestion: bestMatch };
+  }
+
+  return { canonicalCmd: null };
+};
+
 export default function Terminal() {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');
@@ -25,26 +92,31 @@ export default function Terminal() {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
-    const command = trimmedCmd.toLowerCase();
+    const { canonicalCmd, corrected, autoCorrectedFrom, suggestion } = resolveCommand(trimmedCmd);
     let response = '';
     let isError = false;
 
-    switch (command) {
+    let prefixNotice = corrected ? `ℹ️ (Auto-corrected "${autoCorrectedFrom}" → "${canonicalCmd}")\n` : '';
+
+    switch (canonicalCmd) {
       case 'help':
-        response = `Available commands:
+        response = `${prefixNotice}Available commands:
   about      - Brief biography of Nikhil
   skills     - Categorized technical stack
   projects   - Showcases live application links
   experience - Career history and timeline
+  contact    - Email & professional profiles
   clear      - Empty console screen`;
         break;
+
       case 'about':
-        response = `Nikhil Kudale | Full Stack & AI Engineer
+        response = `${prefixNotice}Nikhil Kudale | Full Stack & AI Engineer
 --------------------------------------
 A Software Developer based in Bengaluru, specializing in building robust, high-performance backend modules (Java, Spring Boot), automating software development workflows (Python, Power Automate), and creating conversational AI workflows (RAG pipelines with LangChain & FAISS).`;
         break;
+
       case 'skills':
-        response = `TECHNICAL TOOLKIT:
+        response = `${prefixNotice}TECHNICAL TOOLKIT:
 ------------------
 [Backend & AI]
   - Java, Python, Spring Boot, Spring Security, REST APIs
@@ -55,20 +127,24 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
 [Databases & Tools]
   - PostgreSQL, MySQL, JDBC, Git/GitHub, Streamlit, Docker`;
         break;
+
       case 'projects':
-        response = `LIVE PROJECT PORTFOLIO:
+        response = `${prefixNotice}LIVE PROJECT PORTFOLIO:
 -----------------------
-1. 🛒 Cartly (Full Stack E-Commerce)
-   - Tech: Spring Boot, React, Cloudflare Pages, PostgreSQL
+1. 🎙️ AI Interview Assistant (Generative AI SaaS)
+   - Tech: Python, Gemini API, LangChain, FAISS, Streamlit
+   - Live: https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/
+   - Code: https://github.com/Nikhilkudale/Ai_interview_assistant
+2. 🛒 Cartly (Full Stack E-Commerce)
+   - Tech: Spring Boot, React, MySQL, Docker, Render
    - Live: https://cartly-cgt.pages.dev/
-2. 🤖 RAG Chatbot (Conversational AI)
+3. 🤖 RAG Chatbot (Conversational AI)
    - Tech: Python, LangChain, FAISS Vector DB, Streamlit
-   - Live: https://nikhilkudale-ragchatbot-srcapp-givdds.streamlit.app/
-3. ⚡ AlgoPath (Algorithm Simulation)
-   - Tech: HTML5 Canvas API, Next.js, CSS Modules`;
+   - Live: https://nikhilkudale-ragchatbot-srcapp-givdds.streamlit.app/`;
         break;
+
       case 'experience':
-        response = `CAREER MAP:
+        response = `${prefixNotice}CAREER MAP:
 -----------
 * Project Engineer / Software Developer
   Wipro (Philips project) | Jun 2024 - Present
@@ -80,12 +156,27 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
   Mitras IT Solutions | Sep 2021
   - Created visualization sheets using Tableau and studied AI structures.`;
         break;
+
+      case 'contact':
+        response = `${prefixNotice}CONTACT DETAILS:
+----------------
+- Email: nikhilkudale76@gmail.com
+- LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/
+- GitHub: https://github.com/Nikhilkudale
+- Location: Bengaluru, Karnataka, India`;
+        break;
+
       case 'clear':
         setHistory([]);
         setInput('');
         return;
+
       default:
-        response = `Command not found: "${trimmedCmd}". Type "help" for a list of valid commands.`;
+        if (suggestion) {
+          response = `Command not found: "${trimmedCmd}". Did you mean "${suggestion}"? Type "help" for a list of valid commands.`;
+        } else {
+          response = `Command not found: "${trimmedCmd}". Type "help" for a list of valid commands.`;
+        }
         isError = true;
     }
 

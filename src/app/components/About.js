@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import styles from './About.module.css';
 import Terminal from './Terminal';
 
@@ -58,7 +59,14 @@ export default function About() {
             <div className={styles.cardContainer}>
               <div className={`${styles.mainCard} glassCard`}>
                 <div className={styles.avatarRing}>
-                  <div className={styles.avatar}>NK</div>
+                  <Image
+                    src="/profile.jpg"
+                    alt="Nikhil Kudale"
+                    width={104}
+                    height={104}
+                    className={styles.avatarImage}
+                    priority
+                  />
                 </div>
                 <h4 className={styles.cardTitle}>Nikhil Kudale</h4>
                 <span className={styles.cardSubtitle}>Full Stack &amp; AI Engineer</span>

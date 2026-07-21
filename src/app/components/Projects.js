@@ -9,9 +9,9 @@ export default function Projects() {
       title: 'Cartly',
       tag: 'Full Stack',
       icon: '🛒',
-      description: 'A responsive e-commerce platform offering secure checkout, product listings, order processing, and dynamic inventory management. Formulated with a Java Spring Boot backend and React client.',
-      tech: ['Java', 'Spring Boot', 'React', 'Spring Security', 'Cloudflare Pages', 'PostgreSQL'],
-      github: '#', // placeholder or nikhil-kudale-dev/cartly
+      description: 'A responsive e-commerce platform offering secure checkout, product listings, order processing, and dynamic inventory management. Built with a Java Spring Boot backend, React UI, MySQL database, and containerized with Docker for deployment on Render.',
+      tech: ['Java', 'Spring Boot', 'React', 'Spring Security', 'MySQL', 'Docker', 'Render'],
+      github: '#',
       live: 'https://cartly-cgt.pages.dev/',
     },
     {
@@ -24,13 +24,13 @@ export default function Projects() {
       live: 'https://nikhilkudale-ragchatbot-srcapp-givdds.streamlit.app/',
     },
     {
-      title: 'AlgoPath',
-      tag: 'Front-End / Algorithms',
-      icon: '⚡',
-      description: 'An interactive canvas-based simulator visualizing classic pathfinding algorithms (Dijkstra, A*, BFS, DFS) and maze generation techniques. Built with responsive controls and configurable parameters.',
-      tech: ['Next.js', 'HTML5 Canvas', 'Data Structures', 'CSS Modules'],
-      github: '#',
-      live: '#',
+      title: 'AI Interview Assistant',
+      tag: 'Generative AI SaaS',
+      icon: '🎙️',
+      description: 'A Full-Stack Generative AI SaaS app automating resume screening, ATS matching, and real-time STAR framework mock interviews powered by RAG (LangChain + FAISS), Google Gemini API, and HuggingFace embeddings.',
+      tech: ['Python', 'Google Gemini API', 'LangChain', 'FAISS Vector DB', 'HuggingFace', 'Streamlit'],
+      github: 'https://github.com/Nikhilkudale/Ai_interview_assistant',
+      live: 'https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/',
     },
   ];
 
