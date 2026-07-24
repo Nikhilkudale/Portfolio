@@ -9,6 +9,9 @@ export const metadata = {
     description: 'Professional portfolio of Nikhil Kudale, specializing in Java Spring Boot, LLMs, and Next.js.',
     images: ['/profile.jpg'],
   },
+  verification: {
+    google: 'google6d7fc1919f219b0c',
+  },
 };
 
 export default function RootLayout({ children }) {
