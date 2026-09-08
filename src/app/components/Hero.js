@@ -87,21 +87,21 @@ export default function Hero() {
             Contact Me
           </button>
         </div>
-      </div>
 
-      <a
-        href="#about"
-        className={styles.scrollIndicator}
-        onClick={(e) => {
-          e.preventDefault();
-          handleScrollTo('about');
-        }}
-      >
-        <span>Scroll Down</span>
-        <div className={styles.mouse}>
-          <div className={styles.wheel} />
-        </div>
-      </a>
+        <a
+          href="#about"
+          className={styles.scrollIndicator}
+          onClick={(e) => {
+            e.preventDefault();
+            handleScrollTo('about');
+          }}
+        >
+          <span>Scroll Down</span>
+          <div className={styles.mouse}>
+            <div className={styles.wheel} />
+          </div>
+        </a>
+      </div>
     </section>
   );
 }
