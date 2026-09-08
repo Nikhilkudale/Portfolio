@@ -56,7 +56,51 @@ export default function Contact() {
           _subject: `Portfolio Contact: ${formData.name} sent you a message!`,
           _template: 'table',
           _captcha: 'false',
-          _autoresponse: `Hi ${formData.name},\n\nThank you for reaching out through my portfolio site! I have received your message and appreciate you taking the time to connect.\n\nWhether you would like to discuss software engineering opportunities, Generative AI / RAG application development, Java Spring Boot backends, or collaborative projects, I will review your message and get back to you within 24 hours.\n\nIn the meantime, feel free to connect with me:\n• LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/\n• Email: nikhilnkudale@gmail.com\n\nBest regards,\n\nNikhil Kudale\nFull-Stack & Generative AI Engineer\nWipro | Software Developer\nBengaluru, India`,
+          _autoresponse: `<div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0a1d; color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #2e265c; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+  <!-- 3D Graphic Header Banner -->
+  <div style="position: relative; background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%); text-align: center; border-bottom: 2px solid #8b5cf6; overflow: hidden;">
+    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="3D Futuristic Graphic Header" style="width: 100%; height: 180px; object-fit: cover; opacity: 0.85; display: block;" />
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #0b0a1d, transparent); padding: 20px 0 10px 0;">
+      <h2 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">⚡ Thank You For Reaching Out</h2>
+    </div>
+  </div>
+
+  <!-- Main Body Content -->
+  <div style="padding: 28px 24px; line-height: 1.6; color: #e2e8f0; font-size: 15px;">
+    <p style="margin-top: 0;">Hi <strong>${formData.name}</strong>,</p>
+    <p>Thank you for getting in touch through my portfolio website! I have received your message regarding "<strong>${formData.subject || 'General Inquiry'}</strong>" and appreciate you reaching out.</p>
+
+    <!-- 3D Core Specialization Badge -->
+    <div style="background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: 12px; padding: 18px; margin: 24px 0; text-align: center;">
+      <div style="font-size: 28px; margin-bottom: 6px;">🤖 ☕ ⚡</div>
+      <div style="color: #a78bfa; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Core Specializations</div>
+      <div style="color: #ffffff; font-size: 14px; margin-top: 6px; font-weight: 600;">Generative AI & RAG Workflows • Java Spring Boot • React & Next.js</div>
+    </div>
+
+    <p>Whether you would like to discuss software engineering opportunities, Generative AI application development, robust backend architectures, or collaborative projects, I will review your note and get back to you within 24 hours.</p>
+
+    <!-- Call to action button -->
+    <div style="text-align: center; margin: 28px 0;">
+      <a href="https://linkedin.com/in/nikhil-kudale-dev/" target="_blank" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4); color: #ffffff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 14px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">Connect on LinkedIn &rarr;</a>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #2e265c; margin: 28px 0;" />
+
+    <!-- Professional Signature -->
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div>
+        <div style="font-weight: 700; color: #ffffff; font-size: 16px; letter-spacing: 0.3px;">Nikhil Kudale</div>
+        <div style="color: #a78bfa; font-size: 13px; font-weight: 600; margin-top: 2px;">Full-Stack & Generative AI Engineer</div>
+        <div style="color: #94a3b8; font-size: 13px; margin-top: 2px;">Software Developer</div>
+        <div style="color: #64748b; font-size: 12px; margin-top: 4px;">📧 nikhilnkudale@gmail.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: #05040d; padding: 14px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid #1e1b4b;">
+    © ${new Date().getFullYear()} Nikhil Kudale. Portfolio & AI Engineering.
+  </div>
+</div>`,
         }),
       });
 
