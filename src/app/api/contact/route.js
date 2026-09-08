@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 export async function POST(request) {
   try {
@@ -21,100 +24,112 @@ export async function POST(request) {
       );
     }
 
-    // Auto-response text for sender
-    const autoResponseMsg = `Hi ${name},
+    const apiKey = process.env.RESEND_API_KEY;
 
-Thank you for reaching out through my portfolio website! I have received your message regarding "${subject || 'General Inquiry'}" and appreciate you taking the time to connect.
+    if (apiKey) {
+      // 1. Send Notification Email to Nikhil (nikhilnkudale@gmail.com)
+      await resend.emails.send({
+        from: 'Nikhil Portfolio <onboarding@resend.dev>',
+        to: ['nikhilnkudale@gmail.com'],
+        replyTo: email,
+        subject: `Portfolio Contact: ${name} sent you a message!`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0b0a1d; color: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #8b5cf6;">
+            <h2 style="color: #a78bfa; margin-top: 0;">📩 New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}" style="color: #06b6d4;">${email}</a></p>
+            <p><strong>Subject:</strong> ${subject || 'No Subject'}</p>
+            <p><strong>Message:</strong></p>
+            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+              ${message.replace(/\n/g, '<br />')}
+            </div>
+          </div>
+        `,
+      });
 
-Whether you would like to discuss software engineering opportunities, Generative AI / RAG application development, Java Spring Boot backends, or collaborative projects, I will review your message and get back to you within 24 hours.
+      // 2. Send 3D Graphic HTML Auto-Reply Greeting Email to Sender (Abhishek)
+      await resend.emails.send({
+        from: 'Nikhil Kudale <onboarding@resend.dev>',
+        to: [email],
+        subject: `Thank you for reaching out, ${name}!`,
+        html: `
+          <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0a1d; color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #2e265c; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <!-- 3D Graphic Header Banner -->
+            <div style="position: relative; background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%); text-align: center; border-bottom: 2px solid #8b5cf6; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="3D Futuristic Graphic Header" style="width: 100%; height: 180px; object-fit: cover; opacity: 0.85; display: block;" />
+              <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #0b0a1d, transparent); padding: 20px 0 10px 0;">
+                <h2 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">⚡ Thank You For Reaching Out</h2>
+              </div>
+            </div>
 
-In the meantime, feel free to connect with me:
-• LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/
-• Email: nikhilnkudale@gmail.com
+            <!-- Main Body Content -->
+            <div style="padding: 28px 24px; line-height: 1.6; color: #e2e8f0; font-size: 15px;">
+              <p style="margin-top: 0;">Hi <strong>${name}</strong>,</p>
+              <p>Thank you for getting in touch through my portfolio website! I have received your message regarding "<strong>${subject || 'General Inquiry'}</strong>" and appreciate you reaching out.</p>
 
-Best regards,
+              <!-- 3D Core Specialization Badge -->
+              <div style="background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: 12px; padding: 18px; margin: 24px 0; text-align: center;">
+                <div style="font-size: 28px; margin-bottom: 6px;">🤖 ☕ ⚡</div>
+                <div style="color: #a78bfa; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Core Specializations</div>
+                <div style="color: #ffffff; font-size: 14px; margin-top: 6px; font-weight: 600;">Generative AI & RAG Workflows • Java Spring Boot • React & Next.js</div>
+              </div>
 
-Nikhil Kudale
-Full-Stack & Generative AI Engineer
-Software Developer
-Bengaluru, India`;
+              <p>Whether you would like to discuss software engineering opportunities, Generative AI application development, robust backend architectures, or collaborative projects, I will review your note and get back to you within 24 hours.</p>
 
-    // Forward to FormSubmit using URLSearchParams (FormSubmit preferred format)
+              <!-- Call to action button -->
+              <div style="text-align: center; margin: 28px 0;">
+                <a href="https://linkedin.com/in/nikhil-kudale-dev/" target="_blank" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4); color: #ffffff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 14px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">Connect on LinkedIn &rarr;</a>
+              </div>
+
+              <hr style="border: 0; border-top: 1px solid #2e265c; margin: 28px 0;" />
+
+              <!-- Professional Signature -->
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div>
+                  <div style="font-weight: 700; color: #ffffff; font-size: 16px; letter-spacing: 0.3px;">Nikhil Kudale</div>
+                  <div style="color: #a78bfa; font-size: 13px; font-weight: 600; margin-top: 2px;">Full-Stack & Generative AI Engineer</div>
+                  <div style="color: #94a3b8; font-size: 13px; margin-top: 2px;">Software Developer</div>
+                  <div style="color: #64748b; font-size: 12px; margin-top: 4px;">📧 nikhilnkudale@gmail.com</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background-color: #05040d; padding: 14px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid #1e1b4b;">
+              © ${new Date().getFullYear()} Nikhil Kudale. Portfolio & AI Engineering.
+            </div>
+          </div>
+        `,
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: 'Message delivered successfully!',
+      });
+    }
+
+    // Fallback: If RESEND_API_KEY environment variable is not set yet, forward server-to-server to FormSubmit
     const params = new URLSearchParams();
     params.append('name', name);
     params.append('email', email);
     params.append('_replyto', email);
     params.append('subject', subject || 'Portfolio Contact Form Message');
     params.append('message', message);
-    params.append('_subject', `Portfolio Contact: ${name} sent you a message!`);
-    params.append('_template', 'table');
-    params.append('_captcha', 'false');
-    params.append('_autoresponse', autoResponseMsg);
 
-    const response = await fetch('https://formsubmit.co/ajax/nikhilnkudale@gmail.com', {
+    await fetch('https://formsubmit.co/ajax/nikhilnkudale@gmail.com', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-        'Referer': 'https://portfolio-two-peach-41.vercel.app',
-      },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params.toString(),
     });
 
-    const responseText = await response.text();
-    let data;
-    try {
-      data = JSON.parse(responseText);
-    } catch {
-      data = { message: responseText };
-    }
-
-    if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
-      return NextResponse.json({
-        success: true,
-        message: 'Your message has been sent successfully!',
-      });
-    }
-
-    // Fallback: If FormSubmit requires first-time activation, return friendly status
-    if (responseText.toLowerCase().includes('activate') || responseText.toLowerCase().includes('confirm')) {
-      return NextResponse.json({
-        success: true,
-        message: 'Your message was submitted! Please check nikhilnkudale@gmail.com inbox to click the 1-time FormSubmit activation link.',
-      });
-    }
-
-    // Try secondary Web3Forms free endpoint fallback
-    const w3Response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: '410a82b9-5321-4f93-b2f5-25e22934cf5f',
-        name,
-        email,
-        subject: subject || 'Portfolio Contact Form Message',
-        message,
-        to_email: 'nikhilnkudale@gmail.com',
-        from_name: `${name} (Portfolio Contact)`,
-      }),
-    });
-
-    if (w3Response.ok) {
-      return NextResponse.json({
-        success: true,
-        message: 'Your message has been delivered successfully!',
-      });
-    }
-
     return NextResponse.json({
       success: true,
-      message: 'Your message was sent successfully!',
+      message: 'Message sent successfully!',
     });
   } catch (error) {
     console.error('Contact API Error:', error);
-    return NextResponse.json({
-      success: true,
-      message: 'Your message was received!',
-    });
+    return NextResponse.json(
+      { success: false, message: 'Server error processing email.' },
+      { status: 500 }
+    );
   }
 }
