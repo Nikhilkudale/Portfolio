@@ -56,6 +56,7 @@ export default function Contact() {
           _subject: `Portfolio Contact: ${formData.name} sent you a message!`,
           _template: 'table',
           _captcha: 'false',
+          _autoresponse: `Hi ${formData.name},\n\nThank you for reaching out through my portfolio site! I have received your message and appreciate you taking the time to connect.\n\nWhether you would like to discuss software engineering opportunities, Generative AI / RAG application development, Java Spring Boot backends, or collaborative projects, I will review your message and get back to you within 24 hours.\n\nIn the meantime, feel free to connect with me:\n• LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/\n• Email: nikhilnkudale@gmail.com\n\nBest regards,\n\nNikhil Kudale\nFull-Stack & Generative AI Engineer\nWipro | Software Developer\nBengaluru, India`,
         }),
       });
 
