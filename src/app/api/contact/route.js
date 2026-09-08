@@ -84,14 +84,19 @@ export async function POST(request) {
       </div>
     `;
 
+    // Detect keys (support environment variables: GMAIL_APP_PASSWORD, RESEND_API_KEY, or Nick)
+    const rawNick = process.env.Nick || process.env.NICK || '';
+    const resendKey = process.env.RESEND_API_KEY || (rawNick.startsWith('re_') ? rawNick : null);
+    const gmailPass = process.env.GMAIL_APP_PASSWORD || (!rawNick.startsWith('re_') && rawNick.length >= 8 ? rawNick : null);
+
     // MODE 1: Gmail SMTP (Delivers 100% to ANY email address in the world!)
-    if (process.env.GMAIL_APP_PASSWORD) {
+    if (gmailPass) {
       try {
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
             user: process.env.GMAIL_USER || 'nikhilnkudale@gmail.com',
-            pass: process.env.GMAIL_APP_PASSWORD.replace(/\s+/g, ''),
+            pass: gmailPass.replace(/\s+/g, ''),
           },
         });
 
@@ -104,7 +109,7 @@ export async function POST(request) {
           html: notificationHtml,
         });
 
-        // Send Auto-Reply to Sender
+        // Send Auto-Reply to Sender (Abhishek)
         await transporter.sendMail({
           from: `"Nikhil Kudale" <${process.env.GMAIL_USER || 'nikhilnkudale@gmail.com'}>`,
           to: email,
@@ -118,10 +123,10 @@ export async function POST(request) {
       }
     }
 
-    // MODE 2: Resend API (Safely isolated inside try/catch block)
-    if (process.env.RESEND_API_KEY) {
+    // MODE 2: Resend API
+    if (resendKey) {
       try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const resend = new Resend(resendKey);
         const resendResult = await resend.emails.send({
           from: 'Nikhil Portfolio <onboarding@resend.dev>',
           to: ['nikhilnkudale@gmail.com'],
@@ -140,7 +145,7 @@ export async function POST(request) {
               html: autoReplyHtml,
             });
           } catch (autoErr) {
-            console.warn('Resend auto-reply notice (Onboarding mode limits outside recipients):', autoErr);
+            console.warn('Resend auto-reply notice:', autoErr);
           }
 
           return NextResponse.json({ success: true, message: 'Message delivered successfully via Resend!' });
