@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
-
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -118,6 +116,7 @@ export async function POST(request) {
 
     // MODE 2: Resend API
     if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
       // 1. Send Notification Email to Nikhil
       await resend.emails.send({
         from: 'Nikhil Portfolio <onboarding@resend.dev>',
