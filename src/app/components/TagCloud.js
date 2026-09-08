@@ -19,7 +19,7 @@ export default function TagCloud() {
     const tags = [
       'Java', 'Spring Boot', 'Python', 'LangChain', 'FAISS', 
       'Next.js', 'React.js', 'PostgreSQL', 'Power Automate', 
-      'REST APIs', 'Spring Security', 'Git', 'GitHub', 
+      'REST APIs', 'Spring Security', 'Git', 'CI/CD', 
       'Streamlit', 'Docker', 'Tableau', 'JDBC', 'LLMs'
     ];
 

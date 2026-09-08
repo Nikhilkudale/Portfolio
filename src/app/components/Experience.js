@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './Experience.module.css';
+import TiltCard from './TiltCard';
 
 export default function Experience() {
   const experiences = [
@@ -70,7 +71,7 @@ export default function Experience() {
           {experiences.map((exp, idx) => (
             <div key={`exp-${idx}`} className={styles.timelineItem}>
               <div className={styles.timelineDot} />
-              <div className={styles.timelineContent}>
+              <TiltCard className={styles.timelineContent}>
                 <span className={styles.date}>{exp.date}</span>
                 <h3 className={styles.role}>{exp.role}</h3>
                 <h4 className={styles.company}>{exp.company}</h4>
@@ -79,7 +80,7 @@ export default function Experience() {
                     <li key={pIdx}>{point}</li>
                   ))}
                 </ul>
-              </div>
+              </TiltCard>
             </div>
           ))}
 
@@ -87,14 +88,14 @@ export default function Experience() {
           {education.map((edu, idx) => (
             <div key={`edu-${idx}`} className={styles.timelineItem}>
               <div className={styles.timelineDot} style={{ borderColor: 'var(--secondary-color)' }} />
-              <div className={styles.timelineContent}>
+              <TiltCard className={styles.timelineContent}>
                 <span className={styles.date} style={{ color: 'var(--secondary-color)', background: 'rgba(6, 182, 212, 0.1)' }}>{edu.date}</span>
                 <h3 className={styles.role}>{edu.degree}</h3>
                 <h4 className={styles.company}>{edu.institution}</h4>
                 <ul className={styles.bulletPoints}>
                   <li>{edu.details}</li>
                 </ul>
-              </div>
+              </TiltCard>
             </div>
           ))}
 
@@ -102,14 +103,14 @@ export default function Experience() {
           {certifications.map((cert, idx) => (
             <div key={`cert-${idx}`} className={styles.timelineItem}>
               <div className={styles.timelineDot} style={{ borderColor: 'var(--accent-color)' }} />
-              <div className={styles.timelineContent}>
+              <TiltCard className={styles.timelineContent}>
                 <span className={styles.date} style={{ color: 'var(--accent-color)', background: 'rgba(236, 72, 153, 0.1)' }}>{cert.date}</span>
                 <h3 className={styles.role}>{cert.title}</h3>
                 <h4 className={styles.company}>{cert.issuer}</h4>
                 <ul className={styles.bulletPoints}>
                   <li><strong>Core Skills:</strong> {cert.skills}</li>
                 </ul>
-              </div>
+              </TiltCard>
             </div>
           ))}
         </div>

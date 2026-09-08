@@ -26,7 +26,7 @@ const commandAliases = {
   skills: ['skills', 'skil', 'skils', 'skill', 'stack', 'tech', 'toolkit', 'languages', 'frameworks', 'java', 'python', 'react'],
   projects: ['projects', 'proj', 'project', 'projets', 'prjt', 'interview', 'ats', 'cartly', 'rag', 'apps', 'work', 'portfolio'],
   experience: ['experience', 'exp', 'expe', 'expereicne', 'experiance', 'work', 'wipro', 'job', 'career', 'history', 'philips'],
-  contact: ['contact', 'cntct', 'contct', 'email', 'emial', 'mail', 'phone', 'hire', 'reach', 'linkedin', 'github'],
+  contact: ['contact', 'cntct', 'contct', 'email', 'emial', 'mail', 'phone', 'hire', 'reach', 'linkedin'],
   help: ['help', 'hlp', 'hlep', 'halp', 'commands', 'cmd', 'options', '?', '-h', '--help'],
   clear: ['clear', 'cls', 'clr', 'clean'],
 };
@@ -125,7 +125,7 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
   - React.js, Next.js, HTML5, CSS Modules, JavaScript (ES6+)
   - Power Automate workflow scripts
 [Databases & Tools]
-  - PostgreSQL, MySQL, JDBC, Git/GitHub, Streamlit, Docker`;
+  - PostgreSQL, MySQL, JDBC, Git, Streamlit, Docker`;
         break;
 
       case 'projects':
@@ -134,7 +134,6 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
 1. 🎙️ AI Interview Assistant (Generative AI SaaS)
    - Tech: Python, Gemini API, LangChain, FAISS, Streamlit
    - Live: https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/
-   - Code: https://github.com/Nikhilkudale/Ai_interview_assistant
 2. 🛒 Cartly (Full Stack E-Commerce)
    - Tech: Spring Boot, React, MySQL, Docker, Render
    - Live: https://cartly-cgt.pages.dev/
@@ -162,7 +161,6 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
 ----------------
 - Email: nikhilkudale76@gmail.com
 - LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/
-- GitHub: https://github.com/Nikhilkudale
 - Location: Bengaluru, Karnataka, India`;
         break;
 

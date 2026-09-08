@@ -68,7 +68,7 @@ export default function Chatbot() {
       {
         id: 'interview_assistant',
         keywords: ['interview', 'assistant', 'ats', 'screening', 'mock', 'star', 'gemini', 'huggingface', 'minilm', 'saas'],
-        response: "🎙️ **AI Interview Assistant** is Nikhil's Full-Stack Generative AI SaaS app. It automates resume screening, ATS matching, and real-time STAR-framework mock interviews using **Google Gemini API**, **LangChain**, **FAISS vector store**, and HuggingFace embeddings (`all-MiniLM-L6-v2`).\n\n🔗 Live App: [https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/](https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/)\n💻 GitHub: [github.com/Nikhilkudale/Ai_interview_assistant](https://github.com/Nikhilkudale/Ai_interview_assistant)",
+        response: "🎙️ **AI Interview Assistant** is Nikhil's Full-Stack Generative AI SaaS app. It automates resume screening, ATS matching, and real-time STAR-framework mock interviews using **Google Gemini API**, **LangChain**, **FAISS vector store**, and HuggingFace embeddings (`all-MiniLM-L6-v2`).\n\n🔗 Live App: [https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/](https://aiinterviewassistant-kbxoenhbgtew5wyghwvqln.streamlit.app/)",
       },
       {
         id: 'wipro',
@@ -97,8 +97,8 @@ export default function Chatbot() {
       },
       {
         id: 'contact',
-        keywords: ['contact', 'contct', 'cntct', 'contect', 'email', 'emial', 'mail', 'phone', 'mobile', 'call', 'number', 'linkedin', 'github', 'hire', 'reach', 'connect', 'message', 'address'],
-        response: "✉️ You can connect with Nikhil directly through the contact form on this site, or reach out via:\n\n• **Email:** nikhilkudale76@gmail.com\n• **LinkedIn:** [linkedin.com/in/nikhil-kudale-dev/](https://linkedin.com/in/nikhil-kudale-dev/)\n• **GitHub:** [github.com/Nikhilkudale](https://github.com/Nikhilkudale)",
+        keywords: ['contact', 'contct', 'cntct', 'contect', 'email', 'emial', 'mail', 'phone', 'mobile', 'call', 'number', 'linkedin', 'hire', 'reach', 'connect', 'message', 'address'],
+        response: "✉️ You can connect with Nikhil directly through the contact form on this site, or reach out via:\n\n• **Email:** nikhilkudale76@gmail.com\n• **LinkedIn:** [linkedin.com/in/nikhil-kudale-dev/](https://linkedin.com/in/nikhil-kudale-dev/)",
       },
       {
         id: 'education',

@@ -44,7 +44,7 @@ export default function Skills() {
       skills: [
         { name: 'Docker Containerization', level: 85 },
         { name: 'Render & Streamlit Deployment', level: 90 },
-        { name: 'Git & GitHub Versioning', level: 88 },
+        { name: 'Git Version Control', level: 88 },
         { name: 'Maven & Gradle Builds', level: 82 },
         { name: 'Postman API Suite', level: 90 },
         { name: 'Cloudflare Pages / Vercel', level: 85 },

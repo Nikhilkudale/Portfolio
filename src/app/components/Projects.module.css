@@ -51,10 +51,11 @@
   font-size: 4rem;
   z-index: 2;
   transition: var(--transition-smooth);
+  transform: translateZ(35px);
 }
 
 .projectCard:hover .projectIcon {
-  transform: scale(1.15) rotate(5deg);
+  transform: translateZ(45px) scale(1.15) rotate(5deg);
 }
 
 /* Floating tech stack badge on top of visual */
@@ -74,6 +75,7 @@
   z-index: 2;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  transform: translateZ(25px);
 }
 
 /* Content Details Area */
