@@ -159,7 +159,7 @@ A Software Developer based in Bengaluru, specializing in building robust, high-p
       case 'contact':
         response = `${prefixNotice}CONTACT DETAILS:
 ----------------
-- Email: nikhilkudale76@gmail.com
+- Email: nikhilnkudale@gmail.com
 - LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/
 - Location: Bengaluru, Karnataka, India`;
         break;

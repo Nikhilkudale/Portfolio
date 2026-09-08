@@ -98,7 +98,7 @@ export default function Chatbot() {
       {
         id: 'contact',
         keywords: ['contact', 'contct', 'cntct', 'contect', 'email', 'emial', 'mail', 'phone', 'mobile', 'call', 'number', 'linkedin', 'hire', 'reach', 'connect', 'message', 'address'],
-        response: "✉️ You can connect with Nikhil directly through the contact form on this site, or reach out via:\n\n• **Email:** nikhilkudale76@gmail.com\n• **LinkedIn:** [linkedin.com/in/nikhil-kudale-dev/](https://linkedin.com/in/nikhil-kudale-dev/)",
+        response: "✉️ You can connect with Nikhil directly through the contact form on this site, or reach out via:\n\n• **Email:** nikhilnkudale@gmail.com\n• **LinkedIn:** [linkedin.com/in/nikhil-kudale-dev/](https://linkedin.com/in/nikhil-kudale-dev/)",
       },
       {
         id: 'education',
