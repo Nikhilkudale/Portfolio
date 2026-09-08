@@ -41,36 +41,27 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Formspree Integration Endpoint
-    // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree endpoint token.
-    const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
-
-    if (formspreeEndpoint.includes('YOUR_FORMSPREE_ID')) {
-      // Mock simulation fallback if token is not replaced
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-        });
-      }, 1200);
-      return;
-    }
-
     try {
-      const response = await fetch(formspreeEndpoint, {
+      const response = await fetch('https://formsubmit.co/ajax/nikhilkudale76@gmail.com', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Portfolio Contact Form Message',
+          message: formData.message,
+          _subject: `Portfolio Contact: ${formData.name} sent you a message!`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -79,7 +70,7 @@ export default function Contact() {
           message: '',
         });
       } else {
-        throw new Error('Could not deliver message to Formspree. Try again later.');
+        throw new Error(data.message || 'Could not deliver message. Please try again.');
       }
     } catch (err) {
       setErrorMsg(err.message || 'Network error occurred. Please try again.');
