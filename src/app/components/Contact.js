@@ -42,28 +42,22 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/nikhilnkudale@gmail.com', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          _replyto: formData.email,
           subject: formData.subject || 'Portfolio Contact Form Message',
           message: formData.message,
-          _subject: `Portfolio Contact: ${formData.name} sent you a message!`,
-          _template: 'table',
-          _captcha: 'false',
-          _autoresponse: `Hi ${formData.name},\n\nThank you for reaching out through my portfolio website! I have received your message regarding "${formData.subject || 'General Inquiry'}" and appreciate you connecting.\n\nWhether you would like to discuss software engineering opportunities, Generative AI / RAG application development, Java Spring Boot backends, or collaborative projects, I will review your message and get back to you within 24 hours.\n\nIn the meantime, feel free to connect with me:\n• LinkedIn: https://linkedin.com/in/nikhil-kudale-dev/\n• Email: nikhilnkudale@gmail.com\n\nBest regards,\n\nNikhil Kudale\nFull-Stack & Generative AI Engineer\nSoftware Developer\nBengaluru, India`,
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
+      if (response.ok && data.success) {
         setIsSubmitted(true);
         setFormData({
           name: '',
