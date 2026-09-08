@@ -54,7 +54,7 @@ export default function Hero() {
   const handleScrollTo = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const yOffset = -90;
+      const yOffset = -130;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
